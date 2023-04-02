@@ -2,7 +2,7 @@
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
-import ufo_scrape.js      
+import ufo_scrape   
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def scraper():
     # create an aliens database
     aliens = mongo.db.aliens
     # call the scrape function. This will scrape and save to mongo.
-    aliens_data = ufo_scrape
+    aliens_data = ufo_scrape.scrape()
     # update the data with the data that is being scraped.
     aliens.replace_one({}, aliens_data, upsert=True)
     # return a message to the page so we know it was successful.

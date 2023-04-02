@@ -27,7 +27,12 @@ $.get('https://nuforc.org/webreports/ndxe202301.html', function(jan23) {
         //janData is our table turned into a JSON object
         // log janData to confirm output
         console.log(janData);
-    
+        const blob_jan = new Blob([janData], {type: "application/json"});
+        const url_jan = URL.createObjectURL(blob_jan);
+        const link_jan = document.createElement("a");
+        link_jan.href = url_jan;
+        link_jan.download = "janData.json";
+        link_jan.click();
       });
 
 //get the data from the site for february 2023
@@ -54,6 +59,12 @@ $.get('https://nuforc.org/webreports/ndxe202302.html', function(feb23) {
         //febData is our table turned into a JSON object
         // log febData to confirm output
         console.log(febData);
+        const blob_feb = new Blob([febData], {type: "application/json"});
+        const url_feb = URL.createObjectURL(blob_feb);
+        const link_feb = document.createElement("a");
+        link_feb.href = url_feb;
+        link_feb.download = "febData.json";
+        link_feb.click();
     
       });
 
@@ -81,6 +92,12 @@ $.get('https://nuforc.org/webreports/ndxe202303.html', function(mar23) {
         //marData is our table turned into a JSON object
         // log marData to confirm output
         console.log(marData);
+        const blob_mar = new Blob([marData], {type: "application/json"});
+        const url_mar = URL.createObjectURL(blob_mar);
+        const link_mar = document.createElement("a");
+        link_mar.href = url_mar;
+        link_mar.download = "marData.json";
+        link_mar.click();
     
       });
  
