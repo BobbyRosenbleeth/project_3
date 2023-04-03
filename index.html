@@ -4,12 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>2023 UFO Data</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="templates/bootstrap.css" />
+    <style>
+        body {
+          background-color: black;
+        }
+  
+          </style>
 </head>
 <body>
-    <h1>Open the console</h1>
+    <div class="container">
+        <div class="card-header" style="text-align:center">
+          <h2>UFO Sightings for 2023</h2>
+          <h3>Select the month below: <span class="star-wars"></span></h3>
+          <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+              <button type="button" class="btn btn-default btn-lg upvote" value=1>
+                <span class="glyphicon glyphicon-circle-arrow-up"></span> Upvote
+              </button>
+              <button type="button" class="btn btn-default btn-lg downvote" value=-1>
+                <span class="glyphicon glyphicon-circle-arrow-down"></span> Downvote
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- <h1>Open the console</h1> -->
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="ufo_scrape.js"></script>
+    <script src="static/ufo_scrape.js"></script>
 </body>
 </html>
