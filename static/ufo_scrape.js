@@ -102,7 +102,9 @@ $.get('https://nuforc.org/webreports/ndxe202303.html', function(mar23) {
     
       });
  
-     
+   $.get("/").then(jandata => (
+    console.log(jandata)
+   ))  
  
 
 
