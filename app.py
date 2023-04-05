@@ -1,37 +1,47 @@
-# Imports
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
-import ufo_scrape   
+import ufo_scrapeBS
 
+#create flask instance
 app = Flask(__name__)
 
-# Use flask_pymongo to set up mongo connection
+#establish link to mongo database
 app.config["MONGO_URI"] = "mongodb://localhost:27017/aliens_db"
 mongo = PyMongo(app)
 
 client = MongoClient("localhost", 27017)
 db = client["aliens_db"]
-collection = db["aliens"] 
+collection = db["aliens"]
 
-# Root route
+
 @app.route("/")
 def index():
-    # find one document from the mongo db and return it.
-    aliens = mongo.db.aliens.find_one()
-    # pass that listing to render_template
-    return render_template("index.html", aliens=aliens)
 
-# Run Scrape function
+    # find one document from our mongo db and return it.
+    jandata = mongo.db.aliens.find_one()
+
+    # pass that listing to render_template
+    return render_template("index.html", janspecs=jandata)
+
+# set our path to trigger our scrape
 @app.route("/scrape")
-def scraper():
-    # create an aliens database
+def scrape():
+    
+     # create an aliens database
     aliens = mongo.db.aliens
-    # call the scrape function. This will scrape and save to mongo.
-    aliens_data = ufo_scrape.scrape()
-    # update the data with the data that is being scraped.
-    aliens.replace_one({}, aliens_data, upsert=True)
-    # return a message to the page so we know it was successful.
+    #Run the scrap function
+    jandata = ufo_scrapeBS.scrape_info('https://nuforc.org/webreports/ndxe202301.html')
+    febdata = ufo_scrapeBS.scrape_info('https://nuforc.org/webreports/ndxe202302.html')
+    mardata = ufo_scrapeBS.scrape_info('https://nuforc.org/webreports/ndxe202303.html')
+    # Update the Mongo database 
+    for jan in jandata:
+        mongo.db.ufos.insert_one(jan)
+    for feb in febdata:
+        mongo.db.ufos.insert_one(feb)
+    for mar in mardata:
+        mongo.db.ufos.insert_one(mar)
+
     return redirect("/", code=302)
 
 if __name__ == "__main__":
