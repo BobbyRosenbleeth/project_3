@@ -21,11 +21,12 @@ $.get('https://nuforc.org/webreports/ndxe202301.html', function(jan23) {
   //const janData = JSON.stringify(tableData1);
 
   // Assign table tableData 1 to janData
-  const janData = tableData1;
+  // Filter the tableData to only show data with city and state data
+  const janData = tableData1.filter(sighting => sighting.City && sighting.State);
   //janData is our table turned into a JSON object
   // log janData to confirm output
   console.log(janData);
-    
+ 
   // Create markers for Jan
   const janMarkers = L.markerClusterGroup();
 
@@ -86,7 +87,7 @@ $.get('https://nuforc.org/webreports/ndxe202302.html', function(feb23) {
   });
   //Convert the tableData array to a JSON object
   //const febData = JSON.stringify(tableData2);
-  const febData = tableData2
+  const febData = tableData2.filter(sighting => sighting.City && sighting.State);
   console.log(febData);
 
   //febData is our table turned into a JSON object
@@ -107,7 +108,7 @@ $.get('https://nuforc.org/webreports/ndxe202302.html', function(feb23) {
   // Create feb markers
   febData.forEach(function(sighting) {
     const city = sighting.City;
-    const state = sighting.state;
+    const state = sighting.State;
 
     // Use the Google Maps Geocoding API to get Lat and Lng
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json", {
@@ -152,7 +153,7 @@ $.get('https://nuforc.org/webreports/ndxe202303.html', function(mar23) {
   });
   //Convert the tableData array to a JSON object
   //const marData = JSON.stringify(tableData3);
-  const MarData = tableData3;
+  const MarData = tableData3.filter(sighting => sighting.City && sighting.State);
   //marData is our table turned into a JSON object
   // log marData to confirm output
   console.log(marData);
