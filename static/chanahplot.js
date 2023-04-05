@@ -1,5 +1,7 @@
 let janData = ufo_scrape.janData
 
+console.log(janData);
+
 // function usState(county) {
 //     return county == 'USA'
 // }
