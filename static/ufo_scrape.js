@@ -14,7 +14,7 @@ $.get('https://nuforc.org/webreports/ndxe202301.html', function(jan23) {
             "Date": $(tr).find('TD:eq(0)').text(),
             "City": $(tr).find('TD:eq(1)').text(),
             "State": $(tr).find('TD:eq(2)').text(),
-            "County": $(tr).find('TD:eq(3)').text(),
+            "Country": $(tr).find('TD:eq(3)').text(),
             "Shape": $(tr).find('TD:eq(4)').text(),
             "Duration": $(tr).find('TD:eq(5)').text(),
             "Summary": $(tr).find('TD:eq(6)').text(),
@@ -23,7 +23,8 @@ $.get('https://nuforc.org/webreports/ndxe202301.html', function(jan23) {
           }
         });
         //Convert the tableData array to a JSON object
-        const janData = JSON.stringify(tableData1);
+        //const janData = JSON.stringify(tableData1);
+        console.log(tableData1);
         //janData is our table turned into a JSON object
         // log janData to confirm output
         // console.log(janData);
@@ -46,7 +47,7 @@ $.get('https://nuforc.org/webreports/ndxe202302.html', function(feb23) {
             "Date": $(tr).find('TD:eq(0)').text(),
             "City": $(tr).find('TD:eq(1)').text(),
             "State": $(tr).find('TD:eq(2)').text(),
-            "County": $(tr).find('TD:eq(3)').text(),
+            "Country": $(tr).find('TD:eq(3)').text(),
             "Shape": $(tr).find('TD:eq(4)').text(),
             "Duration": $(tr).find('TD:eq(5)').text(),
             "Summary": $(tr).find('TD:eq(6)').text(),
@@ -79,7 +80,7 @@ $.get('https://nuforc.org/webreports/ndxe202303.html', function(mar23) {
             "Date": $(tr).find('TD:eq(0)').text(),
             "City": $(tr).find('TD:eq(1)').text(),
             "State": $(tr).find('TD:eq(2)').text(),
-            "County": $(tr).find('TD:eq(3)').text(),
+            "Country": $(tr).find('TD:eq(3)').text(),
             "Shape": $(tr).find('TD:eq(4)').text(),
             "Duration": $(tr).find('TD:eq(5)').text(),
             "Summary": $(tr).find('TD:eq(6)').text(),
