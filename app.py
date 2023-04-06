@@ -57,10 +57,74 @@ def statedata(state):
 
 @app.route("/ufomap")
 def citydata():
-    jandata = mongo.db.ufos.find({"Country":"USA"},{"_id":0, "lat":1, "lng":1})
+    jandata = mongo.db.ufos.find({
+        "Country":"USA",
+        "Date": {
+            "$regex": "^1/\\d{2}/23"
+        }
+    }, {
+        "_id":0, 
+        "lat":1, 
+        "lng":1,
+        "City":1,
+        "State": 1
+        })
+    
+    febdata = mongo.db.ufos.find({
+        "Country": "USA",
+        "Date": {
+            "$regex": "^2/\\d{2}/23"
+        }
+    }, {
+        "_id":0, 
+        "lat":1, 
+        "lng":1,
+        "City":1,
+        "State": 1
+    })
+
+    mardata = mongo.db.ufos.find({
+        "Country": "USA",
+        "Date": {
+            "$regex": "^3/\\d{2}/23"
+        }
+    }, {
+        "_id":0, 
+        "lat":1, 
+        "lng":1,
+        "City":1,
+        "State": 1
+    })
        
     janlist = list(jandata)
-    return jsonify(janlist)
+    feblist = list(febdata)
+    marlist = list(mardata)
+
+    # Parse out city and state for each month
+    # Not sure I need this code
+    jancities = []
+    for sighting in janlist:
+        jancities.append({
+            "City": sighting["City"],
+            "State": sighting["State"]
+        })
+    
+    febcities = []
+    for sighting in feblist:
+        febcities.append({
+            "City": sighting["City"],
+            "State": sighting["State"]
+        })
+
+    marcities = [] 
+    for sighting in marlist: 
+        marcities.append({
+            "City": sighting["City"],
+            "State": sighting["State"]
+        })
+        
+
+    return jsonify({"January": janlist, "February": feblist, "March": marlist})
 
 if __name__ == "__main__":
     app.run(debug=True)

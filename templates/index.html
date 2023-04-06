@@ -40,6 +40,15 @@
       
   
           </style>
+    <!--Leaflet CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+    <!--Leaflet JS code-->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
 </head>
 <body>
     <div class="container">
@@ -51,7 +60,11 @@
           <div class="row">
             <div style="text-align:center">
                   <!-- <h5>Choose your month:</h5> -->
-                  <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                  <!--<select id="selDataset" onchange="optionChanged(this.value)"></select>> -->
+                          <select id="month-select"></select>    
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
             </div>
           </div>
         </div>
@@ -71,12 +84,19 @@
       </div>
       <div class="bottom">
         <h2 style ="text-align:center">Bottom Section</h2>
-      </div>
+        <!--Insert Leaflet map-->
+        <div id="map" style="width: 600px; height:400px"></div>
+        
+
+    </select>
+      </div> 
     
     </body>
   
     
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <script src="static/ufo_scrape.js"></script>
+    <script src="static/js/ufo_scrape.js"></script>
+
+    
 </body>
 </html>
