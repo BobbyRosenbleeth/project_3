@@ -1,5 +1,6 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect,jsonify
 from flask_pymongo import PyMongo
+import flask_pymongo
 from pymongo import MongoClient
 import ufo_scrapeBS
 
@@ -12,7 +13,7 @@ mongo = PyMongo(app)
 
 client = MongoClient("localhost", 27017)
 db = client["aliens_db"]
-collection = db["aliens"]
+collection = db["ufos"]
 
 
 @app.route("/")
@@ -43,6 +44,23 @@ def scrape():
         mongo.db.ufos.insert_one(mar)
 
     return redirect("/", code=302)
+
+@app.route("/statedata/<state>")
+def statedata(state):
+    if state == "USA":
+        jandata = mongo.db.ufos.find({"Country":"USA"},{"_id":0, "State":1, "Shape":1, "Date":1 })
+        # code for whole US
+    else:    
+        jandata = mongo.db.ufos.find({"State":state},{"_id":0, "State":1, "Shape":1, "Date":1 })
+    janlist = list(jandata)
+    return jsonify(janlist)
+
+@app.route("/ufomap")
+def citydata():
+    jandata = mongo.db.ufos.find({"Country":"USA"},{"_id":0, "lat":1, "lng":1})
+       
+    janlist = list(jandata)
+    return jsonify(janlist)
 
 if __name__ == "__main__":
     app.run(debug=True)

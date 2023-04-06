@@ -4,6 +4,8 @@ from splinter import Browser
 import pandas as pd
 import time
 from webdriver_manager.chrome import ChromeDriverManager
+import requests
+from config import gkey
 
 def scrape_info(url):
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -38,7 +40,24 @@ def scrape_info(url):
                     summary = cells[6].text
                     posted = cells[7].text
                     images = cells[8].text
-                    dictionary ={'Date':date, 'City':city, 'State':state, 'Country':country, 'Shape':shape, 'Duration':duration, 'Summary':summary, 'Posted':posted, 'Images':images}
+
+                    resp = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={city},{state}&key={gkey}").json()
+                    lat = resp['results'][0]['geometry']['location']['lat']
+                    lng = resp['results'][0]['geometry']['location']['lng']
+
+                    dictionary ={
+                        'Date':date,
+                        'City':city, 
+                        'State':state, 
+                        'Country':country, 
+                        'Shape':shape, 
+                        'Duration':duration, 
+                        'Summary':summary, 
+                        'Posted':posted, 
+                        'Images':images,
+                        'lat':lat,
+                        'lng':lng
+                    }
                     ufodata.append(dictionary)
         except Exception as error:
                 print(error)
