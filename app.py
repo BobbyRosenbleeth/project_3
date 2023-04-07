@@ -69,7 +69,6 @@ def citydata():
         "City":1,
         "State": 1
         })
-    
     febdata = mongo.db.ufos.find({
         "Country": "USA",
         "Date": {
@@ -82,12 +81,9 @@ def citydata():
         "City":1,
         "State": 1
     })
-
     mardata = mongo.db.ufos.find({
         "Country": "USA",
-        "Date": {
-            "$regex": "^3/\\d{2}/23"
-        }
+        "Date": {"$regex":"^3/"}
     }, {
         "_id":0, 
         "lat":1, 
