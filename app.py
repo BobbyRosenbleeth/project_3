@@ -3,6 +3,8 @@ from flask_pymongo import PyMongo
 import flask_pymongo
 from pymongo import MongoClient
 import ufo_scrapeBS
+import pandas as pd
+import json
 
 #create flask instance
 app = Flask(__name__)
@@ -121,6 +123,17 @@ def citydata():
         
 
     return jsonify({"January": janlist, "February": feblist, "March": marlist})
+
+@app.route("/statedata2")
+def statedata2():
+    jandata = mongo.db.ufos.find({"Country":"USA"},{"_id":0, "State":1, "Shape":1, "Date":1})
+    df = pd.DataFrame(jandata)
+    stateDF = pd.DataFrame(df.State.value_counts()).reset_index()
+    stateDF.columns = ["states", "counts"]
+    states = list(stateDF.index)
+    counts = list(stateDF.values)
+
+    return jsonify(stateDF.to_dict(orient = "list"))
 
 if __name__ == "__main__":
     app.run(debug=True)
