@@ -1,12 +1,9 @@
 // Create bar chart
-var myBarChart = ('barChart', {zoom: 2})
+//var myBarChart = ('barChart', {zoom: 2})
 
 // Connect
-d3
-  .json('/statedata2')
-  .then(data=>{
-    console.log(data);
-  })  
+d3.json('/statedata2').then(function(data){console.log(data);})  
+
 
 let states = data.states
 let stateCounts = data.counts
@@ -16,9 +13,9 @@ let stateCounts = data.counts
 // May or may not use this: function BuildChart(states, counts)
 function init() {
   var trace1 = {
-      x: states.slice(0,4).reverse(),
-      y: stateCounts,
-      text: states.slice(0,4).reverse(),
+      x: states.states,//.slice(0,4).reverse(),
+      y: stateCounts.counts,//.slice(0,4).reverse(),
+      text: states.states,//.slice(0,4).reverse(),
       type: "bar",
       orientation: "h"
   };
