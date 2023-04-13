@@ -1,24 +1,81 @@
-// Create bar chart
 // var myBarChart = ('barChart', {zoom: 2})
 
+// Load Data
+/*d3.json('/statedata2').then(function(data) {
+  console.log(data);
+  var stateData = data
+  var jsonObject = JSON.parse(stateData);
+
+  var month1 = jsonObject.January;
+  var month2 = jsonObject.February;
+  var month3 = jsonObject.March;
+
+  var janCount = jsonObject.January.count;
+  var janStates = jsonObject.January.states;
+  var febCount = jsonObject.February.count;
+  var febStates = jsonObject.February.states;
+  var marCount = jsonObject.March.count;
+  var marStates = jsonObject.March.states;
+
+  console.log(month1);
+  console.log(month2);
+  console.log(month3);
+  console.log(janCount);
+  console.log(janStates);
+  console.log(febCount);
+  console.log(febStates);
+  console.log(marCount);
+  console.log(marStates);
+  for (var i=0; i < January.length; i++) {
+    var stateData = data.January[i];
+    var ufoCount = stateData.count;
+    var state = stateData.states;
+    console.log(ufoCount, state)
+  }
+
+})*/
+
+
+
+// Identify each month
+/*d3.json('/statedata2').then(function(data) {
+  var January = data.products.map(d => d.JStateDF);
+  var February = data.products.map(d => d.FStateDF);
+  var March = data.products.map(d => d.MStateDF);
+  console.log(January, February, March)
+})*/
+
+
+
+
+
+
+
+
+
+
+
+
 // Connect
-d3.json('/statedata2').then(function(data){console.log(data);})  
+// d3.json('/statedata2').then(function(data){console.log(data);})
+d3.json('/statedata2').then(function(data){
+  let state = data.products.map(d => d.states);
+  let statesCounts = data.products.map(d => d.counts);
+  console.log(state, stateCounts);})
 
-
-let states = data.states
-let stateCounts = data.counts
-
-// plot data into bar chart
-// create BarChart
-// May or may not use this: function BuildChart(states, counts)
 // Show the top 3 states for each month
 function init() {
   var trace1 = {
-      x: states.slice(0,4),
-      y: stateCounts,//.slice(0,4),
-      text: states.slice(0,4),
+      x: state.slice(0,4),
+      //data.map(row => row.states).slice(0,4),
+      y: stateCounts,
+      //data.map(row => row.counts),
+      //
+      text: state.slice(0,4),
+      //data.map(row => row.states).slice(0,4),
+      //
       type: "bar",
-      orientation: "h"
+      //orientation: "h"
   };
 
   var data = [trace1]
@@ -87,4 +144,3 @@ init();
 //}
 
 //init();
-
