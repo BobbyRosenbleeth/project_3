@@ -99,7 +99,6 @@ def citydata():
     marlist = list(mardata)
 
     # Parse out city and state for each month
-    # Not sure I need this code
     jancities = []
     for sighting in janlist:
         jancities.append({

@@ -1,3 +1,114 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 UFO Data</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="templates/bootstrap.css" />
+    <style>
+        body {
+          background-color: black;
+          margin: 0;
+          padding: 0;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+        .main {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+      }
+      .left, .right {
+        flex: 1;
+        height: 70%;
+        
+      }
+      
+      .bottom {
+        flex: 1;
+               
+      }
+      
+  
+          </style>
+    Leaflet CSS-->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+    Leaflet JS code
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script> 
+ </head>
+<body>
+    <div class="container">
+      <div class="row">
+    <div class="col-md-12">
+        <div class="card border-dark" style="text-align:center">
+          <h2 style = "font-size: xx-large">UFO Sightings for 2023</h2>
+          <h3 style = "font-size: x-large">Select the month below: <span class="star-wars"></span></h3>
+          <div class="row">
+            <div style="text-align:center">
+                   <h5>Choose your month:</h5> -->
+                  <!--<select id="selDataset" onchange="optionChanged(this.value)"></select>> -->
+                          <!-- <select id="month-select">
+                             
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          </select>   -->
+            <!-- </div>
+          </div>
+        </div>
+      </div>
+      </div> --> 
+      <!-- </div>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+      <div class="main">
+        <div class="left">
+          <h2 style ="text-align:center">Left Section</h2>
+          < Insert Bar Chart -->
+          <!-- <div id='barChart' style= 'width:250px; height:130px; margin:0 auto'></div>
+        </div>
+        <div class="right">
+          <h2 style ="text-align:center">Right Section</h2>
+        </div>
+      </div>
+      <div class="bottom">
+        <h2 style ="text-align:center">UFO sightings across the USA</h2> --> -->
+        <!--Insert Leaflet map-->
+        <!-- <div id="January" style="width: 600px; height:400px; margin:0 auto"></div>
+        <div id="February" style="width: 600px; height:400px; margin:0 auto"></div>
+        <div id="March" style="width: 600px; height:400px; margin:0 auto"></div> -->
+    <!-- </select>
+      </div> 
+    
+    </body> -->
+  
+      <!-- Leaflet JavaScript code -->
+    <!-- <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="../static/js/ufo_scrape.js"></script>
+    <script src="../static/js/plots.js"></script>
+
+    
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,14 +191,15 @@
         <div class="left">
           <h2 style ="text-align:center">Left Section</h2>
           <!--Insert Bar Chart-->
-          <div id='barChart' style= 'width:250px; height:130px; margin:0 auto'></div>
+          <!--<div id='barChart' style= 'width:250px; height:130px; margin:0 auto'></div>-->
+          <div id ="plot" style="width:250px; height:130px; margin:0 auto"></div>
         </div>
         <div class="right">
           <h2 style ="text-align:center">Right Section</h2>
         </div>
       </div>
       <div class="bottom">
-        <h2 style ="text-align:center">Bottom Section</h2>
+        <h2 style ="text-align:center">UFO Sightings Across the USA</h2>
         <!--Insert Leaflet map-->
         <div id="map" style="width: 600px; height:400px; margin:0 auto"></div>
         
