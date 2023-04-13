@@ -135,7 +135,7 @@ function optionChanged(newMonth) {
 
 init();
 
-// Load Data
+// Load Data using d3
 d3.json('/statedata2').then(function(data) {
   var stateData = data;
   var month1 = stateData.January;
