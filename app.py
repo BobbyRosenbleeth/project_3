@@ -125,14 +125,28 @@ def citydata():
 
 @app.route("/statedata2")
 def statedata2():
-    jandata = mongo.db.ufos.find({"Country":"USA"},{"_id":0, "State":1, "Shape":1, "Date":1})
-    df = pd.DataFrame(jandata)
-    stateDF = pd.DataFrame(df.State.value_counts()).reset_index()
-    stateDF.columns = ["states", "counts"]
-    states = list(stateDF.index)
-    counts = list(stateDF.values)
+    jandata = mongo.db.ufos.find({"Country":"USA", "Date": {"$regex": "^1/\\d{2}/23"}},{"_id":0, "State":1, "Shape":1})
+    Jdf = pd.DataFrame(jandata)
+    JstateDF = pd.DataFrame(Jdf.State.value_counts()).reset_index()
+    JstateDF.columns = ["states", "counts"]
+    states = list(JstateDF.index)
+    counts = list(JstateDF.values)
 
-    return jsonify(stateDF.to_dict(orient = "list"))
+    febdata = mongo.db.ufos.find({"Country":"USA", "Date": {"$regex": "^2/\\d{2}/23"}},{"_id":0, "State":1, "Shape":1})
+    Fdf = pd.DataFrame(febdata)
+    FstateDF = pd.DataFrame(Fdf.State.value_counts()).reset_index()
+    FstateDF.columns = ["states", "counts"]
+    states = list(FstateDF.index)
+    counts = list(FstateDF.values)
+
+    mardata = mongo.db.ufos.find({"Country":"USA", "Date": {"$regex":"^3/"}},{"_id":0, "State":1, "Shape":1})
+    Mdf = pd.DataFrame(mardata)
+    MstateDF = pd.DataFrame(Mdf.State.value_counts()).reset_index()
+    MstateDF.columns = ["states", "counts"]
+    states = list(MstateDF.index)
+    counts = list(MstateDF.values)
+
+    return jsonify({"January": JstateDF.to_dict(orient = "list"), "February": FstateDF.to_dict(orient = "list"), "March": MstateDF.to_dict(orient = "list")})
 
 if __name__ == "__main__":
     app.run(debug=True)
