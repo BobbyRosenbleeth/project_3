@@ -13,48 +13,34 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Get lat & lng data from ufoscrape
 d3.json("/ufomap").then(function(data){
-  console.log(data);
+  //console.log(data);
   
 
   // Loop through and add marker for January
   for (var i = 0; i < data.January.length; i++) {
     var markerData = data.January[i];
-    L.marker([markerData.lat, markerData.lng]).addTo(myMap);
-    // if (markerData.Date.startsWith("1")) {
-
-      
-      // var lat = markerData.latitude;
-      // var lng = markerData.longitude;
-      // var marker = L.marker([lat, lng]).addTo(myMap);
-      // marker.bindPopup("<b>" + markerData.City + ", " + markerData.State + "</b><br>" + markerData.Summary);
-  //  }
-  //  console.log(lat)
+    var city = markerData.City;
+    var state = markerData.State;
+    L.marker([markerData.lat, markerData.lng]).addTo(myMap).bindPopup(`<h1>A UFO sighting occurred in ${city},${state}.</h1>`);
+  console.log(markerData)
   }
 
   // Loop through and add marker for Februry
   for (var i = 0; i < data.February.length; i++) {
     var markerData = data.February[i];
-    L.marker([markerData.lat, markerData.lng]).addTo(myMap);
+    var city = markerData.City;
+    var state = markerData.State;
+    L.marker([markerData.lat, markerData.lng]).addTo(myMap).bindPopup(`<h1>A UFO sighting occurred in ${city},${state}.</h1>`);
     
-    
-    // if (markerData.Date.startsWith("2")) {
-    //   var lat = markerData.lat;
-    //   var lng = markerData.lng;
-    //   var marker = L.marker([lat, lng]).addTo(myMap);
-    //   marker.bindPopup("<b>" + markerData.City + ", " + markerData.State + "</b><br>" + markerData.Summary);
-    // }
   }
 
   // Loop through and add marker for March
   for (var i = 0; i < data.March.length; i++) {
     var markerData = data.March[i];
-    L.marker([markerData.lat, markerData.lng]).addTo(myMap);
-    // if (markerData.Date.startsWith("3")) {
-    //   var lat = markerData.lat;
-    //   var lng = markerData.lng;
-    //   var marker = L.marker([lat, lng]).addTo(myMap);
-    //   marker.bindPopup("<b>" + markerData.City + ", " + markerData.State + "</b><br>" + markerData.Summary);
-    // }
+    var city = markerData.City;
+    var state = markerData.State;
+    L.marker([markerData.lat, markerData.lng]).addTo(myMap).bindPopup(`<h1>A UFO sighting occurred in ${city},${state}.</h1>`);
+   
   }
 }); 
 
