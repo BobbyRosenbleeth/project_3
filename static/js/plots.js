@@ -5,18 +5,15 @@
   //console.log(data);
   var stateData = data
   var jsonObject = JSON.parse(stateData);
-
   var month1 = jsonObject.January;
   var month2 = jsonObject.February;
   var month3 = jsonObject.March;
-
   var janCount = jsonObject.January.count;
   var janStates = jsonObject.January.states;
   var febCount = jsonObject.February.count;
   var febStates = jsonObject.February.states;
   var marCount = jsonObject.March.count;
   var marStates = jsonObject.March.states;
-
   console.log(month1);
   console.log(month2);
   console.log(month3);
@@ -34,7 +31,6 @@
     console.log(ufoCount, state)
   }
 })
-
 // Identify each month
 /*d3.json('/statedata2').then(function(data) {
   var January = data.products.map(d => d.JStateDF);
@@ -42,19 +38,16 @@
   var March = data.products.map(d => d.MStateDF);
   console.log(January, February, March)
 })
-
 // Connect
 // d3.json('/statedata2').then(function(data){console.log(data);})
 let state = []
 let stateCounts = []
-
 /*d3.json('/statedata2').then(function(data){
   let state = data.products.map(d => d.states);
   let stateCounts = data.products.map(d => d.counts);
   console.log(state, stateCounts);
   init();
 })
-
 // Show the top 3 states for each month
 function init() {
   var trace1 = {
@@ -69,73 +62,62 @@ function init() {
       type: "bar",
       //orientation: "h"
   };
-
   var data = [trace1]
-
   var layout = {
       title: 'Highest UFO Occurrences by State'
   }
-
   Plotly.newPlot('plot', data, layout);
 }
-
 //Dropdown Menu
 // Call updatePlotly() when a change takes place to the DOM
 d3.selectAll("#month-select").on("change", updatePlotly);
-
 // This function is called when a dropdown menu item is selected
 function updatePlotly() {
-  //Use D3 to select the dropdown menu
+  // Use D3 to select the dropdown menu
   let dropdownMenu = d3.select("#month-select");
-  //Assign the value of the dropdown menu option to a variable
+  // Assign the value of the dropdown menu option to a variable
   let month = dropdownMenu.property("value");
-
-  //Initialize x and y arrays
+  // Initialize x and y arrays
   let x = [];
   let y = [];
-
- if (month === '01') {
-   x = states.slice(0,4).reverse(),
-   y = stateCounts;
+  if (month === 'January') {
+    x = states.slice(0,4),
+    y = stateCounts;
+  }
+  else if (month === 'February') {
+    x = states.slice(0,4),
+    y = stateCounts;
  }
-
- else if (month === '02') {
-   x = states.slice(0,4).reverse(),
-   y = stateCounts;
-}
- else if (month ==='03') {
-   x = states.slice(0,4).reverse(),
-   y = stateCounts;
- }
-
+  else if (month ==='March') {
+    x = states.slice(0,4),
+    y = stateCounts;
+  }
   // Note the extra brackets around 'x' and 'y'
- Plotly.restyle("plot", "x", [x]);
- Plotly.restyle("plot", "y", [y]);
-}
+  Plotly.restyle("plot", "x", [x]);
+  Plotly.restyle("plot", "y", [y]);
+}*/
 
-init();
+//function init() {
+  //d3.json("/statedata2").then(function (data) {
+      // Set up the DropDown:
+      //const month = data.date;
+      //let DropDown = d3.select(`#month-select`);
+      //month.forEach((date) => {
+       // DropDown.append(`option`).text(date).property(`value`, date);
+      //});
+      //// Reset demographic info and visuals to first subject when page is refreshed.
+      //const first = month[0];
+   // BuildChart(first);
+ // });
+//}
+   // Pull data for new subject into demo and visuals.
+//function optionChanged(newMonth) {
+  //BuildChart(newMonth);
+//}
 
-function init() {
-  d3.json("/statedata2").then(function (data) {
-      Set up the DropDown:
-      const month = data.date;
-      let DropDown = d3.select(`#month-select`);
-      month.forEach((date) => {
-       DropDown.append(`option`).text(date).property(`value`, date);
-      });
-      // Reset demographic info and visuals to first subject when page is refreshed.
-      const first = month[0];
- BuildChart(first);
-  });
-}
-//Pull data for new subject into demo and visuals.
-function optionChanged(newMonth) {
-  BuildChart(newMonth);
-}
+//init();
 
-init();
-
-// Load Data
+// Load Data using d3
 d3.json('/statedata2').then(function(data) {
   var stateData = data;
   var month1 = stateData.January;
