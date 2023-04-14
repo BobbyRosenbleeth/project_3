@@ -140,11 +140,11 @@ d3.json('/statedata2').then(function(data) {
   var month2 = stateData.February;
   var month3 = stateData.March;
 
-  var janCount = month1.count;
+  var janCount = month1.counts;
   var janStates = month1.states;
-  var febCount = month2.count;
+  var febCount = month2.counts;
   var febStates = month2.states;
-  var marCount = month3.count;
+  var marCount = month3.counts;
   var marStates = month3.states;
 
   console.log(month1);
@@ -160,6 +160,18 @@ d3.json('/statedata2').then(function(data) {
   // Populate state and stateCounts arrays
   state = janStates.slice(0, 4).concat(febStates.slice(0, 4)).concat(marStates.slice(0, 4));
   stateCounts = janCount.slice(0, 4).concat(febCount.slice(0, 4)).concat(marCount.slice(0, 4));
+
+  /*var janData = []
+  for (let i = 0; i<stateData.January.counts.length; i++) {
+    janData.push({'count': stateData.January.counts[i], 'state': stateData.January.states[i]})
+  } 
+  var febData = []
+  for (let i = 0; i<stateData.February.counts.length; i++) {
+    febData.push({'count': stateData.February.counts[i], 'state': stateData.February.states[i]})
+  } 
+  var marData = []
+  for (let i = 0; i<stateData.March.counts.length; i++) {
+    marData.push({'count': stateData.January.counts[i], 'state': stateData.January.states[i]})*/
 
   init();
 })
@@ -201,10 +213,33 @@ function updatePlotly() {
     x = state.slice(0, 4);
     y = stateCounts.slice(0, 4);
   } else if (month === 'February') {
-    x = state.slice(4, 8);
-    y = stateCounts.slice(4, 8);
+    x = state.slice(0, 4);
+    //x = state.slice(4, 8);
+    y = stateCounts.slice(0, 4);
   } else if (month === 'March') {
-    x = state.slice(8, 12);
-    y = stateCounts.slice
+    x = state.slice(0,4);
+    //x = state.slice(8, 12);
+    y = stateCounts.slice(0,4)
   }
 }
+
+/*function init() {
+  d3.json("/statedata2").then(function (data) {
+      // Set up the DropDown:
+      const month = data.date;
+      let DropDown = d3.select(`#month-select`);
+      month.forEach((date) => {
+        DropDown.append(`option`).text(date).property(`value`, date);
+      });
+      //// Reset demographic info and visuals to first subject when page is refreshed.
+      const first = month[0];
+    BuildChart(first);
+  });
+}
+
+   // Pull data for new subject into demo and visuals.
+function optionChanged(newMonth) {
+  BuildChart(newMonth);
+}
+
+init();*/
