@@ -117,7 +117,9 @@ function updatePlotly() {
 
 //init();
 
-// Load Data using d3
+init();
+
+// Load Data
 d3.json('/statedata2').then(function(data) {
   var stateData = data;
   var month1 = stateData.January;
